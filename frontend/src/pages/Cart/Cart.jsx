@@ -9,15 +9,22 @@ const Cart = () => {
 
   const [promoCode, setPromoCode] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [discount, setDiscount] = useState(0);
 
   const handlePromoCodeSubmit = () => {
-    // For simplicity, let's assume 'DISCOUNT10' is the only valid promo code
-    if (promoCode !== 'DISCOUNT10') {
-      setErrorMessage('Invalid promo code');
-    } else {
+    if (promoCode === 'DISCOUNT10') {
       setErrorMessage('');
-      // Apply promo code logic here
+      setDiscount(0.1); // 10% discount
+    } else {
+      setErrorMessage('Invalid promo code');
+      setDiscount(0);
     }
+  };
+
+  const getTotalAfterDiscount = () => {
+    const subtotal = getTotalCartAmount();
+    const discountAmount = subtotal * discount;
+    return subtotal - discountAmount + (subtotal === 0 ? 0 : deliveryCharge);
   };
 
   return (
@@ -52,11 +59,13 @@ const Cart = () => {
           <div>
             <div className="cart-total-details"><p>Subtotal</p><p>{currency}{getTotalCartAmount()}</p></div>
             <hr />
+            <div className="cart-total-details"><p>Discount</p><p>{currency}{discount > 0 ? (getTotalCartAmount() * discount).toFixed(2) : 0}</p></div>
+            <hr />
             <div className="cart-total-details"><p>Delivery Fee</p><p>{currency}{getTotalCartAmount() === 0 ? 0 : deliveryCharge}</p></div>
             <hr />
             <div className="cart-total-details"><p>Taxes</p><p>{currency}{getTotalCartAmount() === 0 ? 0 : deliveryCharge}</p></div>
             <hr />
-            <div className="cart-total-details"><b>Total</b><b>{currency}{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + deliveryCharge}</b></div>
+            <div className="cart-total-details"><b>Total</b><b>{currency}{getTotalAfterDiscount().toFixed(2)}</b></div>
           </div>
           <button onClick={() => navigate('/order')}>PROCEED TO CHECKOUT</button>
         </div>
