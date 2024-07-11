@@ -1,21 +1,31 @@
-import React from 'react'
-import './Footer.css'
-import { assets } from '../../assets/assets'
+import React from 'react';
+import './Footer.css';
+import { assets } from '../../assets/assets';
 
 const Footer = () => {
+  const openSocialMediaLink = (url) => {
+    window.open(url, '_blank');
+  };
+
   return (
     <div className='footer' id='footer'>
       <div className="footer-content">
         <div className="footer-content-left">
             <img src={assets.logo} alt="" />
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <p>Choose from a diverse menu featuring a delectable array of dishes crafted with the finest ingredients and culinary expertise. Our mission is to satisfy your cravings and elevate your dining experience, one delicious meal at a time.</p>
             <div className="footer-social-icons">
-                <img src={assets.facebook_icon} alt="" />
-                <img src={assets.twitter_icon} alt="" />
-                <img src={assets.linkedin_icon} alt="" />
+                <a href="https://www.instagram.com/lifeofseher/" target="_blank" rel="noopener noreferrer">
+                    <img src={assets.facebook_icon} alt="Instagram" onClick={() => openSocialMediaLink("https://www.instagram.com/lifeofseher/")} />
+                </a>
+                <a href="https://x.com/SimplySeher" target="_blank" rel="noopener noreferrer">
+                    <img src={assets.twitter_icon} alt="Twitter" onClick={() => openSocialMediaLink("https://x.com/SimplySeher")} />
+                </a>
+                <a href="https://www.linkedin.com/in/seher-siddiqui-76041b234/" target="_blank" rel="noopener noreferrer">
+                    <img src={assets.linkedin_icon} alt="LinkedIn" onClick={() => openSocialMediaLink("https://www.linkedin.com/in/seher-siddiqui-76041b234/")} />
+                </a>
             </div>
         </div>
-        <div className="footer-content-center">
+        {/* <div className="footer-content-center">
             <h2>COMPANY</h2>
             <ul>
                 <li>Home</li>
@@ -23,7 +33,7 @@ const Footer = () => {
                 <li>Delivery</li>
                 <li>Privacy policy</li>
             </ul>
-        </div>
+        </div> */}
         <div className="footer-content-right">
             <h2>GET IN TOUCH</h2>
             <ul>
@@ -35,7 +45,7 @@ const Footer = () => {
       <hr />
       <p className="footer-copyright">Copyright 2024 © Tomato.com - All Right Reserved.</p>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
