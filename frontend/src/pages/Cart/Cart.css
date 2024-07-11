@@ -98,10 +98,6 @@
     border-radius: 4px;
     cursor: pointer;
 }
-.error-message {
-    color: red;
-    margin-top: 10px;
-  }
 
 @media(max-width:750px) {
     .cart-bottom {
@@ -111,3 +107,9 @@
         justify-content: start;
     }
 }
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+  }
+  
